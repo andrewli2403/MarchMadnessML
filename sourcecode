@@ -1,0 +1,56 @@
+import csv
+
+#set up dictionary for team number and team name
+teamidentities = {}
+with open('Teams.csv') as csvfile:
+    readCSV = csv.reader(csvfile, delimiter=',')
+    
+    for row in readCSV:
+        teamidentities.update( {row[0]: row[1]})
+    
+    #deletes first key 
+    del teamidentities["Team_Id"]
+    
+    print(teamidentities)
+		
+#read and data split tourney seeds
+trainingDataSetSeeds = []
+testDataSetSeeds = []
+validationDataSetSeeds = []
+
+with open('TourneySeeds.csv') as csvfile:
+    readCSV = csv.reader(csvfile, delimiter=',')
+   
+    for row in readCSV:
+        if row[0] == "2016":
+            testDataSetSeeds.append(row)
+        elif row[0] == "2017":
+            validationDataSetSeeds.append(row)
+        else:
+            trainingDataSetSeeds.append(row)
+            
+    print(trainingDataSetSeeds)
+    print(testDataSetSeeds)
+    print(validationDataSetSeeds)
+		
+#read and data split regular season stats
+
+trainingDataSet = []
+testDataSet = []
+validationDataSet = []
+
+
+with open('RegularSeasonDetailedResults.csv') as csvfile:
+    readCSV = csv.reader(csvfile, delimiter=',')
+
+    for row in readCSV:
+        if row[0] == "2014":
+            testDataSet.append(row)
+        elif row[0] == "2015":
+            validationDataSet.append(row)
+        else:
+            trainingDataSet.append(row)
+   
+    print(trainingDataSet)
+    print(testDataSet)
+    print(validationDataSet)
