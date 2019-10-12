@@ -1,4 +1,7 @@
+#import
 import csv
+import numpy as np
+import torch 
 
 #set up dictionary for team number and team name
 teamidentities = {}
@@ -14,6 +17,8 @@ with open('Teams.csv') as csvfile:
     print(teamidentities)
 		
 #read and data split tourney seeds
+#1985-2017
+
 trainingDataSetSeeds = []
 testDataSetSeeds = []
 validationDataSetSeeds = []
@@ -29,20 +34,18 @@ with open('TourneySeeds.csv') as csvfile:
         else:
             trainingDataSetSeeds.append(row)
             
-    print(trainingDataSetSeeds)
-    print(testDataSetSeeds)
-    print(validationDataSetSeeds)
+      print(trainingDataSetSeeds)
+      print(testDataSetSeeds)
+      print(validationDataSetSeeds)
 		
 #read and data split regular season stats
+#2003-2015
 
 trainingDataSet = []
 testDataSet = []
 validationDataSet = []
 
-
-with open('RegularSeasonDetailedResults.csv') as csvfile:
-    readCSV = csv.reader(csvfile, delimiter=',')
-
+def dataSplit():
     for row in readCSV:
         if row[0] == "2014":
             testDataSet.append(row)
@@ -50,7 +53,72 @@ with open('RegularSeasonDetailedResults.csv') as csvfile:
             validationDataSet.append(row)
         else:
             trainingDataSet.append(row)
-   
-    print(trainingDataSet)
-    print(testDataSet)
-    print(validationDataSet)
+            
+with open('RegularSeasonDetailedResults.csv') as csvfile:
+    readCSV = csv.reader(csvfile, delimiter=',')
+    
+    dataSplit()
+    
+#read and data split tournament stats
+#2003-2016
+
+remainingDataSet = []
+with open('TourneyDetailedResults.csv') as csvfile:
+    readCSV = csv.reader(csvfile, delimiter=',')
+    
+    dataSplit()
+
+#used dataSplit() to assemble trainingDataSet, testDataSet, validationDataSet by combining data from RegularSeasonedDetailedResults.csv and TourneyDetailedResults
+#trainingDataSet made up of data from RSDR years of 2003-2013 and TDR years 2003-2013, 2016
+#testDataSet made up of data from RSDR years 2014 and TDR years 2014
+#validationDataSet made up of data from RSDR years 2015 and TDR years 2015
+
+# print(trainingDataSet)
+# print(testDataSet)
+# print(validationDataSet)
+    
+#extracting features for each DataSet
+#first half of the feature vector is winning team stats and last half is losing team stats
+#features taken out: [Wteam, Wfgm, Wfga, Wfgm3, Wfga3, Wftm, Wfta, Wor, Wdr, Wast, Wto, Wstl, Wblk, Wpf, Lteam, Lfgm, Lfga, Lfgm3, Lfga3, Lftm, Lfta, Lor, Ldr, Last, Lto, Lstl, Lblk, Lpf]
+#score is taken out
+
+#function to featureExtract
+def featureExtract(dataSetArray):
+    featureExtractArray = []
+    for row in dataSetArray:
+        featureExtractArray.append([row[2], row[8], row[9], row[10], row[11], row[12], row[13], row[14], row[15], row[16], row[17], row[18], row[19], row[20], row[4], row[21], row[22], row[23], row[24], row[25], row[26], row[27], row[28], row[29], row[30], row[31] ] )
+    return featureExtractArray[1:].copy()
+    #print(featureExtractArray)
+    
+#trainingDataSet feature extraction
+featuretrainingDataSet = featureExtract(trainingDataSet)
+
+labeltrainingDataSet = [1] * len(featuretrainingDataSet)
+#print(labeltrainingDataSet)
+
+print(featuretrainingDataSet[0])
+
+#converts to numpy array
+x_np = np.array(featuretrainingDataSet[:100]).astype(np.float32)
+
+# for i,x in enumerate(featuretrainingDataSet):
+#     try:
+#         np.array(x).astype(np.float32)
+#     except:
+#         print(i, x)
+
+y_np = np.array(labeltrainingDataSet[:100])
+# print(y_np.shape)
+
+print(type(featuretrainingDataSet_numpy[0][0]))
+
+#converts to pytorch array
+x_pytorch = torch.from_numpy(x_np)
+y_pytorch = torch.from_numpy(y_np)
+
+def train(model, loss, optimizer, x_val, y_val):
+    x = Variable(x_val, requires_grad=False)
+    y = Variable(y_val, requires_grad=False)
+    
+train()
+
