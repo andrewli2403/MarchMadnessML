@@ -1,3 +1,7 @@
+#import
+import numpy as np
+import torch 
+
 #randomize labels
 def randomization(labelList, originalDataSet):
     randomizedDataSet = []
@@ -31,7 +35,7 @@ def load_marchmadness():
     labelstestData = torch.load('labelstest_pytorch.pt')
     labelsvalidationData = torch.load('labelsvalidation_pytorch.pt')
     
-    return featurestrainingData, labelstrainingData, featurestestData, labelstestData, featuresvalidationData, labelsvalid
+    return featurestrainingData, labelstrainingData, featurestestData, labelstestData, featuresvalidationData, labelsvalidationData
 
 def build_model(input_dim, output_dim):
     # We don't need the softmax layer here since CrossEntropyLoss already
