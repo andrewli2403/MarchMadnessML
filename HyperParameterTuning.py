@@ -1,4 +1,6 @@
-#import
+#collect all 100 epochs of the number and store number into array
+#use function and return the biggest value in the array
+
 import numpy as np
 
 import torch
@@ -13,7 +15,7 @@ from UtilityFunctions import predict
 #maybe its the cost
 lr_list = [0.0001, 0.001, 0.01, 0.1, 1.0]
 
-def main(lr):
+def main():
     torch.manual_seed(42)
     #X is data Y is label
     trX, trY, teX, teY, valX, valY = load_marchmadness()
@@ -32,17 +34,18 @@ def main(lr):
             start, end = k * batch_size, (k + 1) * batch_size
             cost += train(model, loss, optimizer,
                           trX[start:end], trY[start:end])
-        predY = predict(model, teX)
+        #use validation set
+        predY = predict(model, valX)
         #changed print to return
         return("Epoch %d, cost = %f, acc = %.2f%%"
               #.cpu().numpy() turns it back into a numpy array
-              % (i + 1, cost / num_batches, 100. * np.mean(predY == teY.cpu().numpy())))
-
-if __name__ == "__main__":
-    main()
+              % (i + 1, cost / num_batches, 100. * np.mean(predY == valY.cpu().numpy())))
 
 result_list = []
-for i in lr_list:
-    result = main(lr_list[i])
-    result_list.append(result)
-
+if __name__ == "__main__":
+    main()
+    
+    
+    #for i in lr_list:
+    #result = main(lr_list[i])
+#result_list.append(result)
