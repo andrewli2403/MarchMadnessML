@@ -10,8 +10,10 @@ from UtilityFunctions import build_model
 from UtilityFunctions import train
 from UtilityFunctions import predict
 
+#maybe its the cost
+lr_list = [0.0001, 0.001, 0.01, 0.1, 1.0]
 
-def main():
+def main(lr):
     torch.manual_seed(42)
     #X is data Y is label
     trX, trY, teX, teY, valX, valY = load_marchmadness()
@@ -31,9 +33,16 @@ def main():
             cost += train(model, loss, optimizer,
                           trX[start:end], trY[start:end])
         predY = predict(model, teX)
-        print("Epoch %d, cost = %f, acc = %.2f%%"
+        #changed print to return
+        return("Epoch %d, cost = %f, acc = %.2f%%"
               #.cpu().numpy() turns it back into a numpy array
               % (i + 1, cost / num_batches, 100. * np.mean(predY == teY.cpu().numpy())))
 
 if __name__ == "__main__":
     main()
+
+result_list = []
+for i in lr_list:
+    result = main(lr_list[i])
+    result_list.append(result)
+
