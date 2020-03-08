@@ -53,6 +53,7 @@ def main(lr_value):
     max_lr = max(acc)
     result_list.append(max_lr)
 
+#invocation main function
 if __name__ == "__main__":
     for value in lr_list:
         main(value)
