@@ -8,11 +8,16 @@ from UtilityFunctions import predict
 
 
 if __name__== “__main__”:
-    optimal_lr = torch.load('optimal_learningmodel.pt')
+    optimal_lm = torch.load('optimal_learningmodel.pt')
 
     
     
-    example_featurevector = []
-    predict(optimal_lr, example_featurevector)
+    
+    VCU = []
+    UCF = []
+    
+    feature = []
+    X = torch.Tensor(feature)
+    predict(optimal_lm, X)
     #make feature vector
     #features taken out: [Wteam, Wfgm, Wfga, Wfgm3, Wfga3, Wftm, Wfta, Wor, Wdr, Wast, Wto, Wstl, Wblk, Wpf, Lteam, Lfgm, Lfga, Lfgm3, Lfga3, Lftm, Lfta, Lor, Ldr, Last, Lto, Lstl, Lblk, Lpf]

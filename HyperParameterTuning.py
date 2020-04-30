@@ -13,7 +13,7 @@ from UtilityFunctions import train
 from UtilityFunctions import predict
 
 #learning rate list
-lr_list = [0.0001, 0.001, 0.01, 0.1, 1.0]
+lr_list = [0.0001, 0.001, 0.01, 0.1, 1.0, 10, 100]
 result_list = []
 
 def main(lr_value):
@@ -53,18 +53,24 @@ def main(lr_value):
     max_lr = max(acc)
     result_list.append(max_lr)
 
+#returns model so it can be saved
+    return model
+
 #invocation main function
 if __name__ == "__main__":
     for value in lr_list:
         main(value)
 
-#associates learning rate and its respective maximum accuracy
-#{learning rate: accuracy}
-lr_acc = {}
-for i in range(len(lr_list)):
-    lr_acc.update({lr_list[i]:result_list[i]})
-print(lr_acc)
+    #associates learning rate and its respective maximum accuracy
+    #{learning rate: accuracy}
+    lr_acc = {}
+    for i in range(len(lr_list)):
+        lr_acc.update({lr_list[i]:result_list[i]})
+    print(lr_acc)
 
-#finds the learning rate that has the highest accuracy
-optimal_lr = max(lr_acc, key=lr_acc.get)
-print(optimal_lr)
+    #finds the learning rate that has the highest accuracy
+    optimal_lr = max(lr_acc, key=lr_acc.get)
+    print(optimal_lr)
+
+    #save best learning rate of model
+torch.save(main(optimal_lr), 'optimal_learningmodel.pt')
