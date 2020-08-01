@@ -22,6 +22,7 @@ def main(lr_value):
     trX, trY, teX, teY, valX, valY = load_marchmadness()
     
     n_examples, n_features = list(trX.size())[0], list(trX.size())[1]
+    #number of outcomes
     n_classes = 2
     model = build_model(n_features, n_classes)
     loss = torch.nn.CrossEntropyLoss(reduction='elementwise_mean')

@@ -42,6 +42,7 @@ def build_model(input_dim, output_dim):
     model = torch.nn.Sequential()
     model.add_module("linear",
                      torch.nn.Linear(input_dim, output_dim, bias=False))
+                     #take first row of matrix to 
     return model
 
 def train(model, loss, optimizer, x, y):
@@ -61,6 +62,6 @@ def train(model, loss, optimizer, x, y):
     return output.item()
 
 def predict(model, x):
+    #output is a two dimensional array
     output = model.forward(x)
     return output.data.numpy().argmax(axis=1)
-
