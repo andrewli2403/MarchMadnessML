@@ -1,4 +1,4 @@
-from MarchMadness2020 import *
+from _MarchMadness2020 import *
 
 import torch
 from torch.autograd import Variable
