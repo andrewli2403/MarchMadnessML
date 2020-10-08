@@ -65,48 +65,45 @@ matchup(teams['MississippiState'], teams['Providence'])
 matchup(teams['Siena'], teams['StFrancis'])
 matchup(teams['Oklahoma'], teams['Xavier'])
 
-print(64)
+print("Round of 64")
 print(getRound(tournament))
 roundSim(tournament)
-print(32)
+print("Round of 32")
 print(getRound(tournament))
 roundSim(tournament)
-print(16)
+print("Sweet 16")
 print(getRound(tournament))
 roundSim(tournament)
-print(8)
+print("Elite 8")
 print(getRound(tournament))
 roundSim(tournament)
-print(4)
+print("Final 4")
 print(getRound(tournament))
 roundSim(tournament)
-print(2)
+print("Championship")
 print(getRound(tournament))
 roundSim(tournament)
-print("champ")
+print("Champion")
 print(getRound(tournament))
 roundSim(tournament)
 
 
 
-W = optimal_lm.linear.weight
-
-a = teams['SanDiegoState'] + teams['EasternWashington']
-a = [a]
 
 
-a = torch.tensor(a)
+#TESTING TENSOR WEIGHTS:
+#W = optimal_lm.linear.weight
+#a = teams['SanDiegoState'] + teams['EasternWashington']
+#a = [a]
+#a = torch.tensor(a)
 
-
-
-print(predict(optimal_lm, a))
-R1 = (W[0] * a)
-R2 = (W[1] * a)
-print(R1)
-print(R2)
-
-print(torch.sum(W[0] * a))
-print(torch.sum(W[1] * a))
+#print(predict(optimal_lm, a))
+#R1 = (W[0] * a)
+#R2 = (W[1] * a)
+#print(R1)
+#print(R2)
+#print(torch.sum(W[0] * a))
+#print(torch.sum(W[1] * a))
 #W = model.linear.weight
 #W = optimal_lm.linear.weight
 #F = [F1, F2]
