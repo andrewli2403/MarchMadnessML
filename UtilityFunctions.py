@@ -1,6 +1,6 @@
 import numpy as np
 import torch 
-
+from torch import nn
 #randomize labels
 def randomization(labelList, originalDataSet):
     randomizedDataSet = []
@@ -39,10 +39,11 @@ def load_marchmadness():
 def build_model(input_dim, output_dim):
     # We don't need the softmax layer here since CrossEntropyLoss already
     # uses it internally.
-    model = torch.nn.Sequential()
+    model = nn.Sequential(torch.nn.ReLU())
     model.add_module("linear",
-                     torch.nn.Linear(input_dim, output_dim, bias=False))
-                     #take first row of matrix to 
+                     nn.Linear(input_dim, output_dim, bias=False))
+                     #take first row of matrix to
+    
     return model
 
 def train(model, loss, optimizer, x, y):

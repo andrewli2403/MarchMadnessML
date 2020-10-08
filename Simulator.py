@@ -89,11 +89,32 @@ roundSim(tournament)
 
 
 
-
+W = optimal_lm.linear.weight
 
 a = teams['SanDiegoState'] + teams['EasternWashington']
 a = [a]
+
+
 a = torch.tensor(a)
+
+
+
 print(predict(optimal_lm, a))
+R1 = (W[0] * a)
+R2 = (W[1] * a)
+print(R1)
+print(R2)
 
+print(torch.sum(W[0] * a))
+print(torch.sum(W[1] * a))
+#W = model.linear.weight
+#W = optimal_lm.linear.weight
+#F = [F1, F2]
+#R1 = torch.sum(W[0] * X)
+#R2 = torch.sum(W[1] * X)
+#print(R1)
+#print(R2)
 
+#if you find a pateern, you should i remove it
+#[Fseed, Ffgm, Ffga, Ffgm3, Ffga3, Fftm, Ffta, For, Fdr, Fast, Fto, Fstl, Fblk, Fpf,
+#problematic datapoints:
