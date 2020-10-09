@@ -1,9 +1,6 @@
 # MarchMadnessML
 March Madness Machine Learning is using 13 years worth of march madness datasets to predict the annual collegiate basketball tournament.
 
-# 2020 Projection
-<img src="images/2020 MarchMadnessResults.png" width = 800>
-
 # Main Files
 Simulator.py allows for the projections of the 2020 March Madness Tournament.
 
@@ -17,7 +14,8 @@ HyperParamterTuning.py is the testing which optimal learning rate is the most ac
 
 UtilityFunctions.py is where loading PyTorch datasets, building the model, and other functions are stored.
 
-
+# 2020 Projection
+<img src="images/2020 MarchMadnessResults.png" width = 800>
 
 
 
