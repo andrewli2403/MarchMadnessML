@@ -17,5 +17,5 @@ UtilityFunctions.py is where loading PyTorch datasets, building the model, and o
 # 2020 Projection
 <img src="images/2020 MarchMadnessResults.png" width = 800>
 
-
-
+# 2020 Projection
+<img src="images/2020 MarchMadnessResults.png" width = 800>
