@@ -14,8 +14,8 @@ HyperParamterTuning.py is the testing which optimal learning rate is the most ac
 
 UtilityFunctions.py is where loading PyTorch datasets, building the model, and other functions are stored.
 
-# 2020 Projection
-<img src="images/2020 MarchMadnessResults.png" width = 800>
+# 2021 Projection
+<img src="images/2021 MarchMadnessResults.png" width = 800>
 
 # 2020 Projection
 <img src="images/2020 MarchMadnessResults.png" width = 800>
