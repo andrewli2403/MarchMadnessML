@@ -1,5 +1,5 @@
 # MarchMadnessML
-March Madness Machine Learning is using 13 years worth of march madness datasets to predict the annual collegiate basketball tournament.
+March Madness Machine Learning is using 13 years worth of march madness datasets to predict the annual collegiate basketball tournament. Every March, bracket projections are posted after NCAA's Selection Sunday.
 
 # Main Files
 `Simulator.py` allows for the projections of the 2020 March Madness Tournament.
